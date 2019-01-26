@@ -1,0 +1,35 @@
+module.exports = { 
+	//param A : array of strings
+	//return an integer
+
+	isValidSudoku : function(A){
+        for (var i = 0; i < 9; i++){
+            for (var j = 0; j< 9; j++){
+                var pos = A[i][j]
+                if (pos != '.'){
+                    for(var k = 0; k< 9; k++){
+                        if (j!== k && A[i][k] === pos){
+                            return 0
+                        }
+                    }
+                    for (var k = 0; k < 9; k++) {
+                        if (i !== k && A[k][j] === pos)
+                            return 0
+                    }
+                    
+                    var a = i - i%3
+                    var b = j - j%3
+                    for (var x = a; x < a+3; x++) {
+                        for (var y = b; y < b+3; y++) {
+                            if (x !== i && y !== j && A[x][y] === pos)
+                                return 0;
+                        }
+                    }
+                }
+                
+            }
+        }
+        return 1
+        
+    }
+};
